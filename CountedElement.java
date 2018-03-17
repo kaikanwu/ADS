@@ -37,15 +37,15 @@ public class CountedElement<E extends Comparable<E>> implements Comparable<Count
 
     @java.lang.Override
     public java.lang.String toString() {
-        return "CountedElement{" +
-                "element=" + element +
-                ", count=" + count +
-                '}';
+        return "("  + element + ", " + count + ')';
     }
 
+    @Override
     public int compareTo(CountedElement<E> sC1) {
     
 		//to complete
+
+		return getElement().compareTo(sC1.getElement());
 	}
 
 }
