@@ -53,6 +53,7 @@ public class WordProcessor {
             try {
                 BufferedReader file = new BufferedReader(new FileReader(fileName));
                 Scanner scanner = new Scanner(file);
+                //  for each word w
                 while (scanner.hasNext()){
 
                     String word = scanner.next();
@@ -86,9 +87,13 @@ public class WordProcessor {
 
                 }
 
+                //close the file read part
+                file.close();
+                scanner.close();
 
 
-            }catch (FileNotFoundException e){
+
+            }catch (IOException e){
 
             }
 
@@ -96,8 +101,9 @@ public class WordProcessor {
 
 
 
+
         }
-		//  for each word w
+
 
 
 
