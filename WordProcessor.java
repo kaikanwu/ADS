@@ -6,13 +6,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
+//import implementing set (eg. TreeSet)
 import java.util.Set;
 import java.util.TreeSet;
-//import implementing set (eg. TreeSet)
 
 
-
-
+/**
+ * class wordProcessor
+ * @author 2327942w
+ */
 public class WordProcessor {
 	private static <E> String displaySet(Set<E> inputSet){
 		//implement this static method to create a
@@ -32,11 +34,10 @@ public class WordProcessor {
 
         return output.toString();
 
-
-
 	}
 
 	/**
+     * main method
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -79,9 +80,6 @@ public class WordProcessor {
                                 }
                             }
 
-
-
-
                     }
 
 
@@ -97,18 +95,7 @@ public class WordProcessor {
 
             }
 
-
-
-
-
-
         }
-
-
-
-
-
-
 	System.out.println(displaySet(countedWordSet));
 
 	}

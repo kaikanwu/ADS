@@ -1,3 +1,7 @@
+/**
+ * @author Kaikan Wu 2327942w
+ * @param <E>
+ */
 public class CountedElement<E extends Comparable<E>> implements Comparable<CountedElement<E>> {
 	private E element;
 	private int count;
