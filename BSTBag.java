@@ -2,6 +2,11 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * class BSTBag implements the Bag interface, using Binary search tree(BST).
+ * @author 2327942w
+ * @param <E>
+ */
 public class BSTBag<E extends Comparable<E>> implements Bag<E> {
 
     public Node<E> root;
@@ -30,7 +35,6 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
                 this.element.setCount(1);
                 this.left = null;
                 this.right = null;
-
             }
         }
 
@@ -43,7 +47,6 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
         @Override
         public boolean isEmpty() {
             return root==null;
-
         }
 
 
@@ -53,7 +56,12 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
          */
         @Override
         public int size() {
-            return size;
+
+            if (root == null){
+                return 0;
+            }else {
+                return size;
+            }
         }
 
 
@@ -66,12 +74,14 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
         public boolean contains(E element) {
             int direction = 0;
             Node<E> current = root;
+            Node<E> cont = new Node<E>(element);
             for (;;){
 
+                //check the current node
                 if (current == null){
                     return false;
                 }else {
-                    direction = element.compareTo(current.element.getElement());
+                    direction = cont.element.compareTo(current.element);
                     if (direction == 0){
                         if (current.element.getCount() == 0){
                             return false;
@@ -88,11 +98,9 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
 
                 }
 
-
-
             }
-
     }
+
 
     /**
      *
@@ -100,16 +108,26 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
      * @param that
      * @return
      */
-
     @Override
-    public boolean equals(Bag<E> that) {//not very sure about this part
-        if (this== that){
-            return true;
-        }else {
+    public boolean equals(Bag<E> that) {
+        //not very sure about this part,  equal should be same elements？ What about the order?
+
+        Iterator<E> bag1 = this.iterator();
+        Iterator<E> bag2 = that.iterator();
+        if (!(this.size() == that.size())){
             return false;
         }
 
+        while (bag1.hasNext() && bag2.hasNext()){
+
+            if (!bag1.next().equals(bag2.next())){
+                return false;
+            }
+        }
+        return true;
     }
+
+
 
     // Transformers methods
 
@@ -125,6 +143,10 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
     }
 
 
+    /**
+     * add method:Add element to bag. increment the number of element items in the bag
+     * @param element
+     */
     @Override
     public void add(E element) {
 
@@ -148,7 +170,6 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
                 //exit this loop
                 return;
             }
-
             // if current node is not null
             //call the compareto method
             direction = newNode.element.compareTo(current.element);
@@ -161,33 +182,29 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
             }
             parent = current;
             if (direction< 0 ){
-                current = current.left;
+                current = parent.left;
             }else {//direction > 0
-                current = current.right;
+                current = parent.right;
             }
-
-
         }
-
-
-
-
     }
 
     // Remove it from this set.
     // Do nothing if no item in bag pertaining to element
     // otherwise decrement number of element items (lazy deletion)
-
     /**
-     * delete an element
+     * delete an element:Remove it from this set.
+     * Do nothing if no item in bag pertaining to element
+     * otherwise decrement number of element items (lazy deletion)
      * @param element
      */
     @Override
     public void remove(E element) {
         int direction = 0;
-        Node<E> partent = null;
         Node<E> current = root;
         Node<E> deleteNode = new Node<E>(element);
+        //decrease the size
+        size--;
         for (;;){
             if (current == null){
                 return;
@@ -196,44 +213,45 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
             direction = deleteNode.element.compareTo(current.element);
 
             if (direction == 0){
-                int cout = current.element.getCount();
-
-                current.element.setCount(--cout);
-                return;
-
+                int count = current.element.getCount();
+                if (count >= 1){
+                    count--;
+                    current.element.setCount(count);
+                    return;
+                }
             }else  if (direction < 0 ){
                 current = current.left;
             }else {
                 current =current.right;
             }
-
-
-
         }
 
 
-
-
-
-
     }
 
 
+    /**
+     * iterator method: Return an iterator that will visit all members of this bag, in no particular order
+     *
+     * @return
+     */
     @Override
     public Iterator<E> iterator() {
-        // Return an iterator that will visit all members of this
-        // bag, in no particular order
-
-
-
-        return null;
+        //call a new class here
+        //return the iterator object
+        return new InOrderIterator();
     }
 
-    //create a intertator object
+
+    /**
+     * create a iterator object
+     */
     private class InOrderIterator implements Iterator<E>{
         LinkedStack<Node<E>> stack;
 
-        //private constructor
+        /**
+         * private constructor
+         */
         private InOrderIterator(){
             stack = new LinkedStack<Node<E>>();
 
@@ -260,18 +278,12 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
             Node<E> place = stack.pop();
 
             for (Node<E> current = place.right; current!=null; current = current.left){
-                while (current.element.getCount()>0){
-                    stack.push(current);
-                    current.count--;
-
-                }
+               for (int i = 0; i < current.element.getCount(); i++){
+                   stack.push(current);
+               }
             }
 
             return place.element.getElement();
-
-
-
-
 
         }
 

@@ -82,7 +82,6 @@ public class WordProcessor {
 
                     }
 
-
                 }
 
                 //close the file read part
