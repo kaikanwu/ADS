@@ -13,7 +13,7 @@ import java.util.TreeSet;
 
 /**
  * class wordProcessor
- * @author 2327942w
+ * @author Kaikan Wu, 2327942w
  */
 public class WordProcessor {
 	private static <E> String displaySet(Set<E> inputSet){
@@ -71,7 +71,6 @@ public class WordProcessor {
 
                         Iterator<CountedElement<String>> c = countedWordSet.iterator();
 
-
                             while (c.hasNext() ){
                                 CountedElement<String> element = c.next();
                                 String str = element.getElement();
@@ -79,7 +78,6 @@ public class WordProcessor {
                                     element.setCount(element.getCount()+1);
                                 }
                             }
-
                     }
 
                 }
@@ -87,8 +85,6 @@ public class WordProcessor {
                 //close the file read part
                 file.close();
                 scanner.close();
-
-
 
             }catch (IOException e){
 

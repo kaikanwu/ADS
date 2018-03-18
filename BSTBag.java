@@ -202,6 +202,7 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
     public void remove(E element) {
         int direction = 0;
         Node<E> current = root;
+        Node<E> parent = null;
         Node<E> deleteNode = new Node<E>(element);
         //decrease the size
         size--;
@@ -219,7 +220,9 @@ public class BSTBag<E extends Comparable<E>> implements Bag<E> {
                     current.element.setCount(count);
                     return;
                 }
-            }else  if (direction < 0 ){
+            }
+//            parent = current;
+            else  if (direction < 0 ){
                 current = current.left;
             }else {
                 current =current.right;

@@ -47,23 +47,34 @@ public class WordProcessor2 {
 //        System.out.println("the size of bag is " + Bag1.size() +", " + Bag2.size());
 //
 //
+//        System.out.println();
+////
+//        System.out.println();
 //        System.out.println("The bag2 is empty?" + Bag2.isEmpty());
 //
 //        Bag2.clear();
 //        System.out.println("The bag2 is empty?" + Bag2.isEmpty());
+//
 
-//        System.out.println("equal or not : " + Bag2.equals(Bag1));
-//        Bag2.remove("ant");
-//        Bag1.remove("ant");
-//        System.out.println(Bag2.size());
-//        System.out.println("the size of bag is " + Bag1.size() +", " + Bag2.size());
-//
-//        System.out.println("equal or not : " + Bag2.equals(Bag1));
-//        Bag1.add("ant");
-//        Bag2.add("ant");
-//        System.out.println("the size of bag is " + Bag1.size() +", " + Bag2.size());
-//
-//        System.out.println("equal or not : " + Bag2.equals(Bag1));
+
+
+
+        System.out.println("equal or not : " + Bag2.equals(Bag1));
+        Bag2.remove("ant");
+        System.out.println("equal or not : " + Bag2.equals(Bag1));
+
+        Bag1.remove("ant");
+        System.out.println(Bag2.size());
+        System.out.println("the size of bag is " + Bag1.size() +", " + Bag2.size());
+
+        System.out.println("equal or not : " + Bag2.equals(Bag1));
+        Bag1.add("ant");
+        System.out.println("equal or not : " + Bag2.equals(Bag1));
+
+        Bag2.add("ant");
+        System.out.println("the size of bag is " + Bag1.size() +", " + Bag2.size());
+
+        System.out.println("equal or not : " + Bag2.equals(Bag1));
 
 //
 
